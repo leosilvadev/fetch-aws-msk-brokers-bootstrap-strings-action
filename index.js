@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const KafkaClient = require("@aws-sdk/client-kafka")
+const { KafkaClient } = require("@aws-sdk/client-kafka")
 
 const client = new KafkaClient({ region: "REGION" });
 const params = {};

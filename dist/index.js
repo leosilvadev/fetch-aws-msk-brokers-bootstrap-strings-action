@@ -27405,7 +27405,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
-const KafkaClient = __nccwpck_require__(9180)
+const { KafkaClient } = __nccwpck_require__(9180)
 
 const client = new KafkaClient({ region: "REGION" });
 const params = {};
