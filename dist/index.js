@@ -27405,17 +27405,24 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
-const { KafkaClient } = __nccwpck_require__(9180)
+const { KafkaClient, ListClusterOperationsCommand } = __nccwpck_require__(9180)
 
 const client = new KafkaClient({ region: "REGION" });
 const params = {};
 
-client.listClusters(params, (err, data) => {
-    if (err) console.log(err, err.stack);
-    else console.log(data);
+const command = new ListClusterOperationsCommand(params);
 
-    core.setOutput('brokers_url_plain', 'fake_brokers_url_plain');
-    core.setOutput('brokers_url_ssl', 'fake_brokers_url_ssl')
+client.send(command).then(data => {
+    console.log('Success!!!!!')
+    console.log(data);
+
+    core.setOutput('brokers_url_plain', 'fake_brokers_url_plain_success');
+    core.setOutput('brokers_url_ssl', 'fake_brokers_url_ssl_success');
+}, error => {
+    console.error(error);
+
+    core.setOutput('brokers_url_plain', 'fake_brokers_url_plain_failure');
+    core.setOutput('brokers_url_ssl', 'fake_brokers_url_ssl_failure');
 });
 })();
 
