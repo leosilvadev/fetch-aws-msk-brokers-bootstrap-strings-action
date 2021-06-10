@@ -11,4 +11,4 @@ outputs:
     description: 'Brokers URL for SSL access (if enabled)'
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
