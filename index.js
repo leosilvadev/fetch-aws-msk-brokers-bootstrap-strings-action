@@ -8,4 +8,7 @@ const params = {};
 client.listClusters(params, (err, data) => {
     if (err) console.log(err, err.stack);
     else console.log(data);
+
+    core.setOutput('brokers_url_plain', 'fake_brokers_url_plain');
+    core.setOutput('brokers_url_ssl', 'fake_brokers_url_ssl')
 });
