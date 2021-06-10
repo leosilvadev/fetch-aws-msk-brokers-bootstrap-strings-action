@@ -1,0 +1,14 @@
+name: 'AWS MSK Brokers Action'
+description: 'Fetch information about your AWS MSK Brokers'
+inputs:
+  region:
+    description: 'Region where the MSK Broker is running'
+    required: true
+outputs:
+  brokers_url_plain:
+    description: 'Brokers URL for no SSL access (if enabled)'
+  brokers_url_ssl:
+    description: 'Brokers URL for SSL access (if enabled)'
+runs:
+  using: 'node12'
+  main: 'index.js'
