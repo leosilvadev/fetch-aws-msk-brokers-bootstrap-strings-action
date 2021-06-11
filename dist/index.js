@@ -27420,24 +27420,16 @@ const params = {};
 console.log(`Running command Lister Cluster with params: ${JSON.stringify(params)}`);
 
 client.send(new ListClustersCommand(params)).then(data => {
-    console.log(data);
-
-    const clusterArn = data.ClusterInfoList[0].ClusterArn;
-    console.log(`Cluster ARN extracted: ${clusterArn}`);
-    return clusterArn;
+    return data.ClusterInfoList[0].ClusterArn;
 }).then(clusterArn => {
     return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
 }).then(result => {
-    console.log(result);
-    core.setOutput('brokers_string', 'fake_brokers_url_plain_success');
-    core.setOutput('brokers_sasl_iam_string', 'fake_brokers_url_ssl_success');
-    core.setOutput('brokers_sasl_scram_string', 'fake_brokers_url_ssl_success');
-    core.setOutput('brokers_sasl_tls_string', 'fake_brokers_url_ssl_success');
+    core.setOutput('brokers_string', result.BootstrapBrokerString);
+    core.setOutput('brokers_sasl_iam_string', result.BootstrapBrokerStringSaslIam);
+    core.setOutput('brokers_sasl_scram_string', result.BootstrapBrokerStringSaslScram);
+    core.setOutput('brokers_sasl_tls_string', result.BootstrapBrokerStringTls);
 }).catch(error => {
-    console.error(error);
-
-    core.setOutput('brokers_url_plain', 'fake_brokers_url_plain_failure');
-    core.setOutput('brokers_url_ssl', 'fake_brokers_url_ssl_failure');
+    core.setFailed(error);
 });
 })();
 
