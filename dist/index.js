@@ -27433,10 +27433,7 @@ client.send(new ListClustersCommand(params)).then(data => {
     core.setOutput('brokers_sasl_iam_string', 'fake_brokers_url_ssl_success');
     core.setOutput('brokers_sasl_scram_string', 'fake_brokers_url_ssl_success');
     core.setOutput('brokers_sasl_tls_string', 'fake_brokers_url_ssl_success');
-})
-
-
-(error => {
+}).catch(error => {
     console.error(error);
 
     core.setOutput('brokers_url_plain', 'fake_brokers_url_plain_failure');
