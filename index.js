@@ -10,11 +10,8 @@ const region = core.getInput('region');
 const clusterArn = core.getInput('cluster-arn');
 
 const client = new KafkaClient({ region: region });
-const params = {};
 
-console.log(`Running command Lister Cluster with params: ${JSON.stringify(params)}`);
-
-client.send(new ListClustersCommand(params)).then(data => {
+client.send(new ListClustersCommand({})).then(data => {
     return data.ClusterInfoList[0].ClusterArn;
 }).then(clusterArn => {
     return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
