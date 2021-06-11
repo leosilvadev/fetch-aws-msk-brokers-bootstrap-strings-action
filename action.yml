@@ -1,14 +1,18 @@
-name: 'AWS MSK Brokers Action'
-description: 'Fetch information about your AWS MSK Brokers'
+name: 'Fetch AWS MSK Brokers Bootstrap string'
+description: 'Fetch bootstrap string of your AWS MSK Brokers'
 inputs:
   region:
     description: 'Region where the MSK Broker is running'
     required: true
 outputs:
-  brokers_url_plain:
-    description: 'Brokers URL for no SSL access (if enabled)'
-  brokers_url_ssl:
-    description: 'Brokers URL for SSL access (if enabled)'
+  brokers_string:
+    description: 'Brokers URL for no SSL access (if enabled, or else empty)'
+  brokers_sasl_iam_string:
+    description: 'Brokers URL for SSL access and IAM Authentication (if enabled, or else empty)'
+  brokers_sasl_scram_string:
+    description: 'Brokers URL for SSL access and SCRAM Authentication (if enabled, or else empty)'
+  brokers_sasl_tls_string:
+    description: 'Brokers URL for SSL access and TLS Authentication (if enabled, or else empty)'
 runs:
   using: 'node12'
   main: 'dist/index.js'
