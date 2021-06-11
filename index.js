@@ -1,16 +1,16 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { KafkaClient, ListClusterOperationsCommand } = require("@aws-sdk/client-kafka")
+const { KafkaClient, ListClustersCommand } = require("@aws-sdk/client-kafka")
 
 const region = core.getInput('region');
 const clusterArn = core.getInput('cluster-arn');
 
 const client = new KafkaClient({ region: region });
-const params = { 'ClusterArn': clusterArn };
+const params = {};
 
-console.log(`Running command Lister Cluster with params: ${params}`);
+console.log(`Running command Lister Cluster with params: ${JSON.stringify(params)}`);
 
-const command = new ListClusterOperationsCommand(params);
+const command = new ListClustersCommand(params);
 
 client.send(command).then(data => {
     console.log('Success!!!!!')
