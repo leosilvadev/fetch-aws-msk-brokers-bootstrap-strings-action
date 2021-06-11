@@ -27405,17 +27405,17 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(5127);
 const github = __nccwpck_require__(3134);
-const { KafkaClient, ListClusterOperationsCommand } = __nccwpck_require__(9180)
+const { KafkaClient, ListClustersCommand } = __nccwpck_require__(9180)
 
 const region = core.getInput('region');
 const clusterArn = core.getInput('cluster-arn');
 
 const client = new KafkaClient({ region: region });
-const params = { 'ClusterArn': clusterArn };
+const params = {};
 
-console.log(`Running command Lister Cluster with params: ${params}`);
+console.log(`Running command Lister Cluster with params: ${JSON.stringify(params)}`);
 
-const command = new ListClusterOperationsCommand(params);
+const command = new ListClustersCommand(params);
 
 client.send(command).then(data => {
     console.log('Success!!!!!')
