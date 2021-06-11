@@ -27423,7 +27423,9 @@ client.send(new ListClustersCommand(params)).then(data => {
     console.log('Success!!!!!')
     console.log(data);
 
-    return data.ClusterInfoList.ClusterArn;
+    const clusterArn = JSON.parse(data).ClusterInfoList.ClusterArn;
+    console.log(`Cluster ARN extracted: ${clusterArn}`)
+    return clusterArn;
 }).then(clusterArn => {
     return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
 }).then(result => {
