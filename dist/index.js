@@ -27413,6 +27413,8 @@ const clusterArn = core.getInput('cluster-arn');
 const client = new KafkaClient({ region: region });
 const params = { 'ClusterArn': clusterArn };
 
+console.log(`Running command Lister Cluster with params: ${params}`);
+
 const command = new ListClusterOperationsCommand(params);
 
 client.send(command).then(data => {
