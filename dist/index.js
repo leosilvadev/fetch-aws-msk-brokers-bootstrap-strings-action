@@ -27420,17 +27420,15 @@ const params = {};
 console.log(`Running command Lister Cluster with params: ${JSON.stringify(params)}`);
 
 client.send(new ListClustersCommand(params)).then(data => {
-    console.log('Success!!!!!')
     console.log(data);
 
-    const clusterArn = JSON.parse(data).ClusterInfoList.ClusterArn;
-    console.log(`Cluster ARN extracted: ${clusterArn}`)
+    const clusterArn = data.ClusterInfoList[0].ClusterArn;
+    console.log(`Cluster ARN extracted: ${clusterArn}`);
     return clusterArn;
 }).then(clusterArn => {
     return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
 }).then(result => {
-    console.log(result)
-    console.log(JSON.stringify(result))
+    console.log(result);
     core.setOutput('brokers_string', 'fake_brokers_url_plain_success');
     core.setOutput('brokers_sasl_iam_string', 'fake_brokers_url_ssl_success');
     core.setOutput('brokers_sasl_scram_string', 'fake_brokers_url_ssl_success');
