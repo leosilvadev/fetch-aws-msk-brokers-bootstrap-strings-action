@@ -31,6 +31,7 @@ Brokers URL for SSL access and TLS Authentication (if enabled, or else empty)
 
 <code>
 uses: leosilvadev/msk-brokers-action@v0.11
+
 with:
   region: "eu-central-1"
 </code>

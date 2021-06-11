@@ -1,5 +1,5 @@
-name: 'Fetch AWS MSK Brokers Bootstrap string'
-description: 'Fetch bootstrap string of your AWS MSK Brokers'
+name: 'Fetch AWS MSK Brokers Bootstrap strings'
+description: 'Fetch bootstrap strings of your AWS MSK Brokers'
 inputs:
   region:
     description: 'Region where the MSK Broker is running'
