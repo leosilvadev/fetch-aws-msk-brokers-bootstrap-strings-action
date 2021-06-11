@@ -4,6 +4,9 @@ inputs:
   region:
     description: 'Region where the MSK Broker is running'
     required: true
+  cluster-arn:
+    description: 'Cluster ARN'
+    required: true
 outputs:
   brokers_url_plain:
     description: 'Brokers URL for no SSL access (if enabled)'
