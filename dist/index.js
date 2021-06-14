@@ -27424,7 +27424,7 @@ client.send(new ListClustersCommand({})).then(data => {
 }).then(clusterArn => {
     return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
 }).then(result => {
-    console.log(`Found given brokers string: JSON.stringify(result)`);
+    console.log(`Found given brokers string: ${JSON.stringify(result)}`);
     core.setOutput('brokers_string', result.BootstrapBrokerString);
     core.setOutput('brokers_sasl_iam_string', result.BootstrapBrokerStringSaslIam);
     core.setOutput('brokers_sasl_scram_string', result.BootstrapBrokerStringSaslScram);
