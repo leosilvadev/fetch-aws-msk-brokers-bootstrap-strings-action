@@ -30,7 +30,7 @@ Brokers URL for SSL access and TLS Authentication (if enabled, or else empty)
 ## Example usage
 
 ``` yaml
-uses: leosilvadev/msk-brokers-action@v0.11
+uses: mobimeo/fetch-aws-msk-brokers-bootstrap-strings-action@v1.1
 with:
   region: "eu-central-1"
 ```
