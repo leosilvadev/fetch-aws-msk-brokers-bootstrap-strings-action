@@ -4,6 +4,10 @@ inputs:
   region:
     description: 'Region where the MSK Broker is running'
     required: true
+  escape-result:
+    description: 'If result strings must be encoded, ex: broker1:9096\,broker2:9096'
+    required: false
+    default: 'false'
 outputs:
   brokers_string:
     description: 'Brokers URL for no SSL access (if enabled, or else empty)'
