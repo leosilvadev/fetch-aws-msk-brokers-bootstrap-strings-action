@@ -27432,8 +27432,8 @@ client.send(new ListClustersCommand({})).then(data => {
     const firstCluster = data.ClusterInfoList[0];
     return {
         clusterArn: firstCluster.ClusterArn,
-        zookeeperConnectString: firstCluster.zookeeperConnectString,
-        zookeeperConnectStringTls: firstCluster.zookeeperConnectStringTls
+        zookeeperConnectString: firstCluster.ZookeeperConnectString,
+        zookeeperConnectStringTls: firstCluster.ZookeeperConnectStringTls
     };
 
 }).then(cluster => {
