@@ -13,6 +13,10 @@ outputs:
     description: 'Brokers URL for SSL access and SCRAM Authentication (if enabled, or else empty)'
   brokers_sasl_tls_string:
     description: 'Brokers URL for SSL access and TLS Authentication (if enabled, or else empty)'
+  zookeeper_string:
+    description: 'Zookeeper URL for no SSL access (if enabled, or else empty)'
+  zookeeper_tls_string:
+    description: 'Zookeeper URL for SSL access (if enabled, or else empty)'
 runs:
   using: 'node12'
   main: 'dist/index.js'

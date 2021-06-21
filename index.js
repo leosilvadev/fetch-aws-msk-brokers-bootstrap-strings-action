@@ -15,11 +15,23 @@ const client = new KafkaClient({ region: region });
 
 client.send(new ListClustersCommand({})).then(data => {
     console.log(`Found ${data.ClusterInfoList.length} clusters, getting brokers string from the first one`);
-    return data.ClusterInfoList[0].ClusterArn;
-}).then(clusterArn => {
-    return client.send(new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn }));
+    const firstCluster = data.ClusterInfoList[0];
+    return {
+        clusterArn: firstCluster.ClusterArn,
+        zookeeperConnectString: firstCluster.zookeeperConnectString,
+        zookeeperConnectStringTls: firstCluster.zookeeperConnectStringTls
+    };
+
+}).then(cluster => {
+    const { clusterArn } = cluster;
+    return client.send(
+        new GetBootstrapBrokersCommand({ 'ClusterArn': clusterArn })
+    ).then(result => Object.assign({}, result, cluster));
+
 }).then(result => {
     console.log(`Found given brokers string: ${JSON.stringify(result)}`);
+    core.setOutput('zookeeper_string', result.zookeeperConnectString);
+    core.setOutput('zookeeper_tls_string', result.zookeeperConnectStringTls);
     core.setOutput('brokers_string', result.BootstrapBrokerString);
     core.setOutput('brokers_sasl_iam_string', result.BootstrapBrokerStringSaslIam);
     core.setOutput('brokers_sasl_scram_string', result.BootstrapBrokerStringSaslScram);
