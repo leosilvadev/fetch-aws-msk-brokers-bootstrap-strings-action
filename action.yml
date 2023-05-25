@@ -22,5 +22,5 @@ outputs:
   zookeeper_tls_string:
     description: 'Zookeeper URL for SSL access (if enabled, or else empty)'
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
