@@ -1,6 +1,6 @@
 # Fetch AWS MSK Brokers Bootstrap strings action
 
-This action fetches the Brokers Boostrap string from your AWS MSK Cluster.
+This action fetches the Brokers and Zookeeper Boostrap string from your AWS MSK Cluster.
 **Currently the action fetchs the strings for the first MSK Cluster found, if you want to fetch from all or use some filter to match the right one, this is not yet supported.**
 
 ## Inputs
@@ -27,10 +27,18 @@ Brokers URL for SSL access and SCRAM Authentication (if enabled, or else empty)
 
 Brokers URL for SSL access and TLS Authentication (if enabled, or else empty)
 
+### `zookeeper_string`
+
+Zookeeper URL for no SSL access (if enabled, or else empty)
+
+### `zookeeper_tls_string`
+
+Zookeeper URL for SSL access (if enabled, or else empty)
+
 ## Example usage
 
 ``` yaml
-uses: leosilvadev/msk-brokers-action@v0.11
+uses: mobimeo/fetch-aws-msk-brokers-bootstrap-strings-action@v1.2
 with:
   region: "eu-central-1"
 ```
